@@ -1,0 +1,25 @@
+{
+  "name": "mice-tm/yii2-condition-builder",
+  "type": "yii2-extension",
+  "description": "Condition constructor for yii2",
+  "keywords": ["yii2", "extension"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Iryna Mychkova",
+      "email": "imychkova@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "micetm\\conditions\\": "src"
+    }
+  },
+  "require": {
+    "php": ">=7.1.0",
+    "yiisoft/yii2": "^2.0.13"
+  },
+  "config": {
+    "process-timeout": 1800
+  }
+}
