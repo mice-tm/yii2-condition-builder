@@ -47,7 +47,7 @@ class Attribute extends ActiveRecord
      */
     public static function collectionName()
     {
-        return \Yii::$app->params['mongoLicenseAttributesCollectionName'];
+        return \Yii::$app->params['constructorAttributesCollectionName'];
     }
 
     /**
@@ -57,6 +57,6 @@ class Attribute extends ActiveRecord
      */
     public static function getDb()
     {
-        return \Yii::$app->get('licensesDb');
+        return \Yii::$app->get('constructorAttributesDb');
     }
 }

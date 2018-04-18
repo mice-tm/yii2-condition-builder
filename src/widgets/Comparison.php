@@ -19,6 +19,7 @@ class Comparison extends Widget
     public $availableComparisons = [];
 
 
+
     public function run()
     {
         $data = ($this->model->comparison && $this->availableComparisons[$this->model->attribute])
@@ -40,7 +41,7 @@ class Comparison extends Widget
                 'depends' => ["attribute-$this->level-$this->position"],
                 "loading" => false,
                 'placeholder' => '...',
-                'url' => Url::to(['/licenses/condition/condition-comparison']),
+                'url' => Url::to(['@constructor-comparison-url']),
                 'initialize' => true,
                 'initDepends' => "attribute-$this->level-$this->position",
             ]

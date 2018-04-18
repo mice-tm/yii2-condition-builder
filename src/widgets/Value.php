@@ -53,7 +53,7 @@ class Value extends Widget
             'pluginOptions' => [
                 'depends' => ["attribute-{$this->level}-{$this->position}"],
                 'placeholder' => '...',
-                'url' => Url::to(['/licenses/condition/condition-value']),
+                'url' => Url::to(['@constructor-value-url']),
                 'multiple' => $this->attribute->multiple,
                 'initDepends' => "attribute-$this->level-$this->position",
                 'allowClear'=>true,
