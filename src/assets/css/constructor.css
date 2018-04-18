@@ -1,0 +1,53 @@
+.offset-0 {
+    padding-left: 0;
+}
+.offset-1 {
+    padding-left: 20px;
+}
+.offset-2 {
+    padding-left: 40px;
+}
+.offset-3 {
+    padding-left: 60px;
+}
+.offset-4 {
+    padding-left: 80px;
+}
+.offset-5 {
+    padding-left: 100px;
+}
+.empty-box, .row-heightable {
+    height: 34px;
+    /*background-color: #ccc;*/
+}
+.red {
+    color: red;
+}
+.green {
+    color: green;
+}
+.vertical-middle {
+    vertical-align: -webkit-baseline-middle;
+}
+
+.number{
+    vertical-align: middle;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 34px;
+}
+.number-level-0{
+    color: black;
+}
+.number-level-1{
+    color: dodgerblue;
+}
+.number-level-2{
+    color: limegreen;
+}
+.number-level-3{
+    color: red;
+}
+.number-level-4{
+    color: purple;
+}
