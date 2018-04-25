@@ -4,6 +4,7 @@ namespace micetm\conditions\actions\conditions;
 
 use kartik\depdrop\DepDropAction;
 use micetm\conditions\services\ConstructorService;
+use Yii;
 
 class ViewComparisonsAction extends DepDropAction
 {
