@@ -20,6 +20,11 @@ class QueryHelper
                 $query[] = $queryModel->getQuery();
             }
         }
+        if (1 == count($query)) {
+            return [
+                "query" => array_shift($query)
+            ];
+        }
         return [
             "query" => [
                 "bool" => [
