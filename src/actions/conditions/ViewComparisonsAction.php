@@ -3,11 +3,7 @@
 namespace micetm\conditions\actions\conditions;
 
 use kartik\depdrop\DepDropAction;
-use micetm\conditions\models\constructor\attributes\AbstractAttribute;
-use micetm\conditions\models\constructor\attributes\MultipleAttribute;
-use micetm\conditions\models\constructor\conditions\Condition;
 use micetm\conditions\services\ConstructorService;
-use yii\base\Action;
 use Yii;
 
 class ViewComparisonsAction extends DepDropAction
@@ -19,8 +15,7 @@ class ViewComparisonsAction extends DepDropAction
         $module,
         ConstructorService $constructor,
         array $config = []
-    )
-    {
+    ) {
         $this->constructor = $constructor;
         parent::__construct($id, $module, $config);
     }

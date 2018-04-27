@@ -48,6 +48,7 @@ $(".conditionality").on("change", ".condition-operator", function () {
     const parentFieldset = $(this).parents('.fieldset:first');
     if ($(this).val()) {
         $(".condition-attribute [value='']", parentFieldset)
+            .first()
             .prop("selected", true)
             .trigger('change')
             .parent('.condition-attribute')
@@ -55,16 +56,19 @@ $(".conditionality").on("change", ".condition-operator", function () {
         ;
 
         $(".comparison-comparison", parentFieldset)
+            .first()
             .val('')
             .trigger('change');
         $(".comparison-value", parentFieldset).val('')
+            .first()
             .trigger('change');
         if ($(parentFieldset).attr('data-level') < (maxLevel-1) ) {
-            $(".add-condition", parentFieldset).show();
+            $(".add-condition", parentFieldset).first().show();
         }
     } else {
-        $(".add-condition", parentFieldset).hide();
+        $(".add-condition", parentFieldset).first().hide();
         $(".condition-attribute", parentFieldset)
+            .first()
             .prop("disabled", false)
         ;
     }

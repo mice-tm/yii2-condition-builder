@@ -41,7 +41,7 @@ class Query
         if (count($this->condition->ConditionModels)) {
             foreach ($this->condition->ConditionModels as $condition) {
                 $queryModel = new self($condition);
-                $query["query"]["bool"][self::CONDITIONS[$this->condition->operator]][] = $queryModel->getQuery();
+                $query["bool"][self::CONDITIONS[$this->condition->operator]][] = $queryModel->getQuery();
             }
             return $query;
         } elseif ($this->condition->attribute) {
