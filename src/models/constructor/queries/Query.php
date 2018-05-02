@@ -47,14 +47,14 @@ class Query
         } elseif ($this->condition->attribute) {
             if (AbstractAttribute::EQUAL_TO_COMPARISON === $this->condition->comparison) {
                 if (is_array($this->condition->value)) {
-                    $query["terms"][$this->condition->attribute . ".raw"] = $this->condition->value;
+                    $query["terms"][$this->condition->attribute] = $this->condition->value;
                     return $query;
                 }
-                $query["term"][$this->condition->attribute . ".raw"] = $this->condition->value;
+                $query["term"][$this->condition->attribute] = $this->condition->value;
                 return $query;
             }
             if (AbstractAttribute::MORE_THAN_ONE_IN_COMPARISON === $this->condition->comparison) {
-                $query["terms"][$this->condition->attribute . ".raw"] =
+                $query["terms"][$this->condition->attribute] =
                     is_array($this->condition->value)
                         ? $this->condition->value
                         : [$this->condition->value]
