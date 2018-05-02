@@ -47,6 +47,7 @@ $(".conditionality").on("click", ".add-condition", function(){
 $(".conditionality").on("change", ".condition-operator", function () {
     const parentFieldset = $(this).parents('.fieldset:first');
     if ($(this).val()) {
+
         $(".condition-attribute [value='']", parentFieldset)
             .first()
             .prop("selected", true)
@@ -55,12 +56,15 @@ $(".conditionality").on("change", ".condition-operator", function () {
             .prop("disabled", true)
         ;
 
+
+
         $(".comparison-comparison", parentFieldset)
             .first()
             .val('')
             .trigger('change');
-        $(".comparison-value", parentFieldset).val('')
+        $(".comparison-value", parentFieldset)
             .first()
+            .val('')
             .trigger('change');
         if ($(parentFieldset).attr('data-level') < (maxLevel-1) ) {
             $(".add-condition", parentFieldset).first().show();
