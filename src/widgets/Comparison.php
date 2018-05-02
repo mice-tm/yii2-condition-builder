@@ -1,8 +1,6 @@
 <?php
 
-
 namespace micetm\conditions\widgets;
-
 
 use kartik\depdrop\DepDrop;
 use yii\base\Widget;
