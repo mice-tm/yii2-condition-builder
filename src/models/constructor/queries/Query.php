@@ -50,7 +50,10 @@ class Query
                     $query["terms"][$this->condition->attribute] = $this->condition->value;
                     return $query;
                 }
-                $query["term"][$this->condition->attribute] = $this->condition->value;
+                $query["bool"][self::OPERATOR_OR][]["term"][$this->condition->attribute . ".raw"]
+                    = $this->condition->value;
+                $query["bool"][self::OPERATOR_OR][]["match"][$this->condition->attribute]
+                    = $this->condition->value;
                 return $query;
             }
             if (AbstractAttribute::MORE_THAN_ONE_IN_COMPARISON === $this->condition->comparison) {
