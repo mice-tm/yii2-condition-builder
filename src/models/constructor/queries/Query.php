@@ -52,7 +52,7 @@ class Query
                 }
                 $query["bool"][self::OPERATOR_OR][]["term"][$this->condition->attribute . ".raw"]
                     = $this->condition->value;
-                $query["bool"][self::OPERATOR_OR][]["match"][$this->condition->attribute]
+                $query["bool"][self::OPERATOR_OR][]["match_phrase"][$this->condition->attribute]
                     = $this->condition->value;
                 return $query;
             }
