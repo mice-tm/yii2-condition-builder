@@ -70,4 +70,10 @@ class Condition extends Model implements ContainerInterface
             ],
         ] + parent::scenarios();
     }
+
+    public function isUnary()
+    {
+        return !empty($this->attribute) && !empty($this->comparison);
+    }
+
 }
