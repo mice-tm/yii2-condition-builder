@@ -3,12 +3,8 @@
 namespace micetm\conditions\actions\conditions;
 
 use kartik\depdrop\DepDropAction;
-use micetm\conditions\models\constructor\attributes\AbstractAttribute;
 use micetm\conditions\models\constructor\attributes\MultipleAttribute;
-use micetm\conditions\models\constructor\conditions\Condition;
 use micetm\conditions\services\ConstructorService;
-use yii\base\Action;
-use Yii;
 
 class ViewValuesAction extends DepDropAction
 {
@@ -30,7 +26,7 @@ class ViewValuesAction extends DepDropAction
         if (!$model instanceof MultipleAttribute) {
             return [];
         }
-        $values =$model->getData();
+        $values = $model->getData();
         array_walk($values, function (&$value, $i) {
             $value = [
                 'id' => $value,
