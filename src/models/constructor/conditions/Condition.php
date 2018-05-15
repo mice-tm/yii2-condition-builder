@@ -19,7 +19,7 @@ class Condition extends Model implements ContainerInterface
     /** @var string */
     public $comparison;
 
-    /** @var string */
+    /** @var mixed */
     public $value;
 
     public $conditions = [];
@@ -66,7 +66,8 @@ class Condition extends Model implements ContainerInterface
                 'operator',
                 'attribute',
                 'comparison',
-                'conditionModels'
+                'conditionModels',
+                'value',
             ],
         ] + parent::scenarios();
     }
