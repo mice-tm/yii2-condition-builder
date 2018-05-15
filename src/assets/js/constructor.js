@@ -47,6 +47,7 @@ $(".conditionality").on("click", ".add-condition", function(){
 $(".conditionality").on("change", ".condition-operator", function () {
     const parentFieldset = $(this).parents('.fieldset:first');
     if ($(this).val()) {
+
         $(".condition-attribute [value='']", parentFieldset)
             .first()
             .prop("selected", true)
@@ -54,14 +55,16 @@ $(".conditionality").on("change", ".condition-operator", function () {
             .parent('.condition-attribute')
             .prop("disabled", true)
         ;
-
         $(".comparison-comparison", parentFieldset)
             .first()
             .val('')
             .trigger('change');
-        $(".comparison-value", parentFieldset).val('')
+        $(".comparison-value.tt-input", parentFieldset)
             .first()
+            .val('')
+            .prop("disabled", true)
             .trigger('change');
+
         if ($(parentFieldset).attr('data-level') < (maxLevel-1) ) {
             $(".add-condition", parentFieldset).first().show();
         }
@@ -72,7 +75,31 @@ $(".conditionality").on("change", ".condition-operator", function () {
             .prop("disabled", false)
         ;
     }
+});
+
+
+$(".conditionality").on("change", ".condition-attribute", function () {
+    const parentFieldset = $(this).parents('.fieldset:first');
+    if ($(this).val()) {
+        $(".comparison-value", parentFieldset)
+            .first()
+            .val('')
+            .prop("disabled", false)
+            .trigger('change');
+
+
+    } else {
+        $(".field-condition-value", parentFieldset).first().find('input').each(function () {
+            $(this).val('');
+        })
+        $(".comparison-value", parentFieldset)
+            .first()
+            .val('')
+            .attr('value', '')
+            .click();
+    }
 })
+
 
 $(document).ready(function(){
     const counter = new Counter();

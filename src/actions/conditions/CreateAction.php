@@ -12,6 +12,10 @@ class CreateAction extends Action
 {
     protected $constructor;
 
+    public $defaultAttribute;
+    public $defaultValue;
+    public $defaultComparison = AbstractAttribute::EQUAL_TO_COMPARISON;
+
     public function __construct(
         $id,
         $module,
@@ -42,9 +46,10 @@ class CreateAction extends Action
         return $this->controller->renderAjax('@constructor-views/condition/ajax/_condition', [
             'model' => new Condition([
                 'operator' => Condition::OPERATOR_STATEMENT,
-                'attribute' => 'properties.types',
-                'comparison' => AbstractAttribute::EQUAL_TO_COMPARISON,
-                'value' => "Website Templates",
+                'attribute' => $this->defaultAttribute,
+                'comparison' => $this->defaultComparison,
+                "value" => $this->defaultValue,
+
             ]),
             'availableAttributes' => $availableAttributes,
             'path' => $path,

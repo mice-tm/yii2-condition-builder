@@ -30,9 +30,9 @@ class Operator extends Widget
         );
 
         $templateOperation = <<<TXT
-<div class="col-sm-3">
+<div class="col-sm-3 offset-{$this->level}">
     <div class="row">
-        <div class="counter col-sm-1  offset-{$this->level}">
+        <div class="counter col-sm-2">
             <span class="number number-level-{$this->level}" ></span>
         </div>
         <div class="col-sm-5 field-condition-operator">
