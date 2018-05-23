@@ -5,6 +5,7 @@ namespace micetm\conditions\widgets;
 
 use yii\helpers\ArrayHelper;
 use yii\base\Widget;
+use yii\helpers\Url;
 
 class FieldSet extends Widget
 {
@@ -15,6 +16,8 @@ class FieldSet extends Widget
     public $disabled = false;
     public $attribute = null;
     public $availableAttributes = [];
+    public $comparisonUrl = '@constructor-comparison-url';
+    public $valueUrl = '@constructor-value-url';
 
     public function run()
     {
@@ -55,7 +58,8 @@ TXT;
             "level" => $this->level,
             "position" => $this->position,
             "disabled" => empty($this->model->attribute),
-            "availableComparisons" => $availableComparisons
+            "availableComparisons" => $availableComparisons,
+            "dataUrl" => Url::to([$this->comparisonUrl]),
         ]);
         $value = Value::widget([
             "model" => $this->model,
@@ -63,7 +67,8 @@ TXT;
             "attribute" => $this->availableAttributes[$this->model->attribute],
             "level" => $this->level,
             "position" => $this->position,
-            "disabled" => empty($this->model->attribute)
+            "disabled" => empty($this->model->attribute),
+            "dataUrl" => Url::to([$this->valueUrl]),
         ]);
         $deleteButton = DeleteButton::widget([
             "path" => $path
@@ -79,7 +84,9 @@ TXT;
                     "position" => $i,
                     "path" => $p,
                     "level" => $this->level+1,
-                    "availableAttributes" => $this->availableAttributes
+                    "availableAttributes" => $this->availableAttributes,
+                    'comparisonUrl' => $this->comparisonUrl,
+                    'valueUrl' => $this->valueUrl
                 ]);
             }
         }

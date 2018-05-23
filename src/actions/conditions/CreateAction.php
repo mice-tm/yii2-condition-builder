@@ -4,25 +4,23 @@ namespace micetm\conditions\actions\conditions;
 
 use micetm\conditions\models\constructor\attributes\AbstractAttribute;
 use micetm\conditions\models\constructor\conditions\Condition;
-use micetm\conditions\services\ConstructorService;
 use yii\base\Action;
 use Yii;
 
 class CreateAction extends Action
 {
-    protected $constructor;
-
+    public $constructor;
     public $defaultAttribute;
     public $defaultValue;
     public $defaultComparison = AbstractAttribute::EQUAL_TO_COMPARISON;
+    public $comparisonUrl;
+    public $valueUrl;
 
     public function __construct(
         $id,
         $module,
-        ConstructorService $constructor,
         array $config = []
     ) {
-        $this->constructor = $constructor;
         parent::__construct($id, $module, $config);
     }
 
@@ -38,6 +36,7 @@ class CreateAction extends Action
     public function run()
     {
         $availableAttributes = $this->constructor->getAvailableAttributes();
+
         $request = Yii::$app->getRequest();
         $level = $request->getBodyParam('level', null);
         $position = $request->getBodyParam('position', 0);
@@ -49,12 +48,13 @@ class CreateAction extends Action
                 'attribute' => $this->defaultAttribute,
                 'comparison' => $this->defaultComparison,
                 "value" => $this->defaultValue,
-
             ]),
             'availableAttributes' => $availableAttributes,
             'path' => $path,
             'level' => is_null($level) ? 0 : $level+1,
             'position' => $position,
+            'comparisonUrl' => $this->comparisonUrl,
+            'valueUrl' => $this->valueUrl
         ]);
     }
 

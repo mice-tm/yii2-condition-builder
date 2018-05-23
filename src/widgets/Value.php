@@ -8,7 +8,6 @@ use micetm\conditions\models\constructor\attributes\MultipleAttribute;
 use yii\base\Widget;
 use yii\bootstrap\Html;
 use kartik\depdrop\DepDrop;
-use yii\helpers\Url;
 use yii\web\View;
 
 class Value extends Widget
@@ -19,6 +18,7 @@ class Value extends Widget
     public $position = 0;
     public $disabled = false;
     public $attribute = null;
+    public $dataUrl;
 
     public function run()
     {
@@ -53,7 +53,7 @@ class Value extends Widget
             'pluginOptions' => [
                 'depends' => ["attribute-{$this->level}-{$this->position}"],
                 'placeholder' => '...',
-                'url' => Url::to(['@constructor-value-url']),
+                'url' => $this->dataUrl,
                 'multiple' => $this->attribute->multiple,
                 'initDepends' => "attribute-$this->level-$this->position",
                 'allowClear'=>true,

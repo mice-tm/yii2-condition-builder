@@ -5,6 +5,7 @@ namespace micetm\conditions\services;
 
 use micetm\conditions\models\constructor\attributes\AbstractAttribute;
 use micetm\conditions\models\constructor\attributes\activeRecords\Attribute;
+use micetm\conditions\models\constructor\attributes\activeRecords\AttributeInterface;
 use micetm\conditions\models\constructor\AttributesRepository;
 use yii\helpers\ArrayHelper;
 
@@ -29,20 +30,20 @@ class ConstructorService
     public function getAvailableAttributes()
     {
         /**
-         * @var Attribute[]
+         * @var AttributeInterface[]
          */
         $attributes = $this->repository->getAvailableAttributes();
-        return ArrayHelper::index(array_map(function (Attribute $attribute) {
+        return ArrayHelper::index(array_map(function (AttributeInterface $attribute) {
             return $this->initAttribute($attribute);
         }, $attributes), 'key');
     }
 
-    protected function initAttribute(Attribute $attribute)
+    protected function initAttribute(AttributeInterface $attribute)
     {
         $className = $this->attributes[AbstractAttribute::TYPE_DEFAULT];
 
-        if (!empty($this->attributes[$attribute->type])) {
-            $className = $this->attributes[$attribute->type];
+        if (!empty($this->attributes[$attribute->getType()])) {
+            $className = $this->attributes[$attribute->getType()];
         }
         $model = \Yii::$container->get($className);
         $model->load($attribute->toArray(), '');

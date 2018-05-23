@@ -13,7 +13,7 @@ use yii\mongodb\ActiveRecord;
  * @property bool    $multiple
  * @property array   $data
  */
-class Attribute extends ActiveRecord
+class Attribute extends ActiveRecord implements AttributeInterface
 {
 
     public function attributes()
@@ -58,5 +58,10 @@ class Attribute extends ActiveRecord
     public static function getDb()
     {
         return \Yii::$app->get('constructorAttributesDb');
+    }
+
+    public function getType(): string
+    {
+        return $this->type;
     }
 }

@@ -5,13 +5,13 @@ namespace micetm\conditions\models\constructor;
 use micetm\conditions\models\constructor\attributes\AbstractAttribute;
 use micetm\conditions\models\constructor\attributes\activeRecords\Attribute;
 use yii\base\BaseObject;
-use yii\mongodb\ActiveQuery;
+use yii\db\ActiveQueryInterface;
 
 class AttributesRepository extends BaseObject
 {
 
     /**
-     * @var ActiveQuery
+     * @var ActiveQueryInterface
      */
     public $attributesQuery;
 
@@ -29,6 +29,7 @@ class AttributesRepository extends BaseObject
         return $this->attributesQuery
             ->where(['status' => AbstractAttribute::STATUS_ACTIVE ])
             ->orderBy(['key' => SORT_ASC])
+            ->limit(50)
             ->all();
     }
 
