@@ -47,7 +47,10 @@ class Query
         } elseif ($this->condition->attribute) {
             if (AbstractAttribute::EQUAL_TO_COMPARISON === $this->condition->comparison) {
                 if (is_array($this->condition->value)) {
-                    $query["terms"][$this->condition->attribute] = $this->condition->value;
+                    $query["bool"][self::OPERATOR_OR][]["terms"][$this->condition->attribute . ".raw"]
+                        = $this->condition->value;
+                    $query["bool"][self::OPERATOR_OR][]["terms"][$this->condition->attribute]
+                        = $this->condition->value;
                     return $query;
                 }
                 $query["bool"][self::OPERATOR_OR][]["term"][$this->condition->attribute . ".raw"]
