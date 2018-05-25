@@ -60,10 +60,10 @@ class Query
                 return $query;
             }
             if (AbstractAttribute::MORE_THAN_ONE_IN_COMPARISON === $this->condition->comparison) {
-                $query["terms"][$this->condition->attribute] =
-                    is_array($this->condition->value)
-                        ? $this->condition->value
-                        : [$this->condition->value]
+                $query["bool"][self::OPERATOR_OR][]["terms"][$this->condition->attribute . ".raw"]
+                    = is_array($this->condition->value) ? $this->condition->value : [$this->condition->value];
+                $query["bool"][self::OPERATOR_OR][]["terms"][$this->condition->attribute]
+                    = is_array($this->condition->value) ? $this->condition->value : [$this->condition->value];
                 ;
                 return $query;
             }
