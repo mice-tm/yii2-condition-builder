@@ -4,7 +4,10 @@
 namespace micetm\conditions\widgets;
 
 
+use kartik\widgets\DatePicker;
+use kartik\widgets\DateTimePicker;
 use micetm\conditions\models\constructor\attributes\MultipleAttribute;
+use micetm\conditions\models\constructor\attributes\TimestampAttribute;
 use yii\base\Widget;
 use yii\bootstrap\Html;
 use kartik\depdrop\DepDrop;
@@ -24,9 +27,29 @@ class Value extends Widget
     {
         if ($this->attribute && $this->attribute instanceof MultipleAttribute) {
             return $this->renderList();
+        } if ($this->attribute && $this->attribute instanceof TimestampAttribute) {
+            return $this->renderTimestamp();
         } else {
             return $this->renderInput();
         }
+    }
+
+    private function renderTimestamp()
+    {
+        $input = DatePicker::widget([
+            'name' => $this->path,
+            'value' => \Yii::$app->formatter->asDate($this->model->value),
+            'convertFormat' => true,
+        ]);
+
+        return <<<TXT
+<div class="col-sm-3 field-condition-value">
+    <div class="form-group">
+        $input
+        <div class="help-block"></div>
+    </div>
+</div>
+TXT;
     }
 
     public function renderList()

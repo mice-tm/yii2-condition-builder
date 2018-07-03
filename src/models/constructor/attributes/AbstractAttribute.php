@@ -80,4 +80,9 @@ class AbstractAttribute extends Model
 
         }
     }
+
+    public function value($value)
+    {
+        return $value;
+    }
 }
