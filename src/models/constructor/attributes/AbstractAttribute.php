@@ -68,7 +68,7 @@ class AbstractAttribute extends Model
             ['type', 'in', 'range' => self::$types],
             ['status', 'in', 'range' => self::$statuses],
             ['comparisons', 'each', 'rule' => ['in', 'range' => self::availableComparisons]],
-
+            ['data', 'safe'],
         ];
     }
 

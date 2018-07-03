@@ -7,35 +7,35 @@ use micetm\conditions\models\constructor\attributes\AbstractAttribute;
 use micetm\conditions\models\constructor\attributes\activeRecords\Attribute;
 use micetm\conditions\models\constructor\attributes\activeRecords\AttributeInterface;
 use micetm\conditions\models\constructor\AttributesRepository;
+use micetm\conditions\models\constructor\conditions\Condition;
+use micetm\conditions\models\constructor\exceptions\AttributeNotFoundException;
+use micetm\conditions\models\constructor\search\AttributeSearchInterface;
 use yii\helpers\ArrayHelper;
 
 class ConstructorService
 {
     /**
-     * @var AttributesRepository
+     * @var AbstractAttribute[]
      */
-    protected $repository;
+    protected $availableAttributes;
 
     /**
      * @var array
      */
     protected $attributes;
 
-    public function __construct(AttributesRepository $repository, $attributes)
+    public function __construct(AttributeSearchInterface $attributeSearch, array $attributes)
     {
-        $this->repository = $repository;
         $this->attributes = $attributes;
+        $this->availableAttributes = $this->initAvailableAttributesList($attributeSearch);
     }
 
+    /**
+     * @return AbstractAttribute[]
+     */
     public function getAvailableAttributes()
     {
-        /**
-         * @var AttributeInterface[]
-         */
-        $attributes = $this->repository->getAvailableAttributes();
-        return ArrayHelper::index(array_map(function (AttributeInterface $attribute) {
-            return $this->initAttribute($attribute);
-        }, $attributes), 'key');
+        return $this->availableAttributes;
     }
 
     protected function initAttribute(AttributeInterface $attribute)
@@ -52,6 +52,16 @@ class ConstructorService
 
     public function getAttribute($title)
     {
-        return $this->initAttribute($this->repository->getAttribute($title));
+        if (!isset($this->availableAttributes[$title])) {
+            throw new AttributeNotFoundException($title);
+        }
+        return $this->availableAttributes[$title];
+    }
+
+    private function initAvailableAttributesList(AttributeSearchInterface $attributeSearch)
+    {
+        return ArrayHelper::index(array_map(function (AttributeInterface $attribute) {
+            return $this->initAttribute($attribute);
+        }, $attributeSearch->search()->all()), 'key');
     }
 }

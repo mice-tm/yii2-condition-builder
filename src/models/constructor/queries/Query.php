@@ -38,8 +38,8 @@ class Query
     public function getQuery()
     {
         $query = [];
-        if (count($this->condition->ConditionModels)) {
-            foreach ($this->condition->ConditionModels as $condition) {
+        if (count($this->condition->conditionModels)) {
+            foreach ($this->condition->conditionModels as $condition) {
                 $queryModel = new self($condition);
                 $query["bool"][self::CONDITIONS[$this->condition->operator]][] = $queryModel->getQuery();
             }
