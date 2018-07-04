@@ -4,11 +4,13 @@
 namespace micetm\conditions\widgets;
 
 
+use kartik\widgets\DatePicker;
+use kartik\widgets\DateTimePicker;
 use micetm\conditions\models\constructor\attributes\MultipleAttribute;
+use micetm\conditions\models\constructor\attributes\TimestampAttribute;
 use yii\base\Widget;
 use yii\bootstrap\Html;
 use kartik\depdrop\DepDrop;
-use yii\helpers\Url;
 use yii\web\View;
 
 class Value extends Widget
@@ -19,14 +21,35 @@ class Value extends Widget
     public $position = 0;
     public $disabled = false;
     public $attribute = null;
+    public $dataUrl;
 
     public function run()
     {
         if ($this->attribute && $this->attribute instanceof MultipleAttribute) {
             return $this->renderList();
+        } if ($this->attribute && $this->attribute instanceof TimestampAttribute) {
+            return $this->renderTimestamp();
         } else {
             return $this->renderInput();
         }
+    }
+
+    private function renderTimestamp()
+    {
+        $input = DatePicker::widget([
+            'name' => $this->path,
+            'value' => \Yii::$app->formatter->asDate($this->model->value),
+            'convertFormat' => true,
+        ]);
+
+        return <<<TXT
+<div class="col-sm-3 field-condition-value">
+    <div class="form-group">
+        $input
+        <div class="help-block"></div>
+    </div>
+</div>
+TXT;
     }
 
     public function renderList()
@@ -53,7 +76,7 @@ class Value extends Widget
             'pluginOptions' => [
                 'depends' => ["attribute-{$this->level}-{$this->position}"],
                 'placeholder' => '...',
-                'url' => Url::to(['@constructor-value-url']),
+                'url' => $this->dataUrl,
                 'multiple' => $this->attribute->multiple,
                 'initDepends' => "attribute-$this->level-$this->position",
                 'allowClear'=>true,

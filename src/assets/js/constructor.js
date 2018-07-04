@@ -1,6 +1,7 @@
 var newConditionEndpoint = window.newConditionEndpoint || '';
 var maxLevel = window.maxLevel || 1;
 var maxPosition = window.maxPosition || 5;
+var filterParams = window.filterParams || {};
 
 function removeCondition(fieldSet) {
     const parentFieldSet = $(fieldSet).parents('.fieldset:first');
@@ -32,7 +33,8 @@ $(".conditionality").on("click", ".add-condition", function(){
         "data": {
             "level": $(parentFieldset).attr('data-level'),
             "position": children.length,
-            "path": $(parentFieldset).attr('data-path') + "[conditions]"
+            "path": $(parentFieldset).attr('data-path') + "[conditions]",
+            "filterParams": filterParams
         }
     }).done(function (data) {
         $(parentFieldset).children(".row:last").append(data);

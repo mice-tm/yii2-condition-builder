@@ -4,7 +4,9 @@ namespace micetm\conditions\models\constructor\attributes;
 
 class BoolAttribute extends AbstractAttribute
 {
-    public static $availableComparisons = [
+    public $comparisons = self::availableComparisons;
+
+    const availableComparisons = [
         '=',
     ];
 }

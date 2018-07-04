@@ -16,4 +16,6 @@ echo FieldSet::widget([
     'path' => $path,
     'level' => $level,
     'position' => $position,
+    'comparisonUrl' => $comparisonUrl,
+    'valueUrl' => $valueUrl
 ]);

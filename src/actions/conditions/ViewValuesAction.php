@@ -8,15 +8,13 @@ use micetm\conditions\services\ConstructorService;
 
 class ViewValuesAction extends DepDropAction
 {
-    protected $constructor;
+    public $constructor;
 
     public function __construct(
         $id,
         $module,
-        ConstructorService $constructor,
         array $config = []
     ) {
-        $this->constructor = $constructor;
         parent::__construct($id, $module, $config);
     }
 

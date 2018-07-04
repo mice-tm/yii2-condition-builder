@@ -38,8 +38,8 @@ class Query
     public function getQuery()
     {
         $query = [];
-        if (count($this->condition->ConditionModels)) {
-            foreach ($this->condition->ConditionModels as $condition) {
+        if (count($this->condition->conditionModels)) {
+            foreach ($this->condition->conditionModels as $condition) {
                 $queryModel = new self($condition);
                 $query["bool"][self::CONDITIONS[$this->condition->operator]][] = $queryModel->getQuery();
             }
@@ -47,7 +47,10 @@ class Query
         } elseif ($this->condition->attribute) {
             if (AbstractAttribute::EQUAL_TO_COMPARISON === $this->condition->comparison) {
                 if (is_array($this->condition->value)) {
-                    $query["terms"][$this->condition->attribute] = $this->condition->value;
+                    $query["bool"][self::OPERATOR_OR][]["terms"][$this->condition->attribute . ".raw"]
+                        = $this->condition->value;
+                    $query["bool"][self::OPERATOR_OR][]["terms"][$this->condition->attribute]
+                        = $this->condition->value;
                     return $query;
                 }
                 $query["bool"][self::OPERATOR_OR][]["term"][$this->condition->attribute . ".raw"]
@@ -57,10 +60,10 @@ class Query
                 return $query;
             }
             if (AbstractAttribute::MORE_THAN_ONE_IN_COMPARISON === $this->condition->comparison) {
-                $query["terms"][$this->condition->attribute] =
-                    is_array($this->condition->value)
-                        ? $this->condition->value
-                        : [$this->condition->value]
+                $query["bool"][self::OPERATOR_OR][]["terms"][$this->condition->attribute . ".raw"]
+                    = is_array($this->condition->value) ? $this->condition->value : [$this->condition->value];
+                $query["bool"][self::OPERATOR_OR][]["terms"][$this->condition->attribute]
+                    = is_array($this->condition->value) ? $this->condition->value : [$this->condition->value];
                 ;
                 return $query;
             }

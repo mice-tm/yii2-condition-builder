@@ -5,7 +5,6 @@ namespace micetm\conditions\widgets;
 use kartik\depdrop\DepDrop;
 use micetm\conditions\models\constructor\attributes\AbstractAttribute;
 use yii\base\Widget;
-use yii\helpers\Url;
 use yii\web\View;
 
 class Comparison extends Widget
@@ -16,6 +15,7 @@ class Comparison extends Widget
     public $position = 0;
     public $disabled = false;
     public $availableComparisons = [];
+    public $dataUrl;
 
 
 
@@ -40,7 +40,7 @@ class Comparison extends Widget
                 'depends' => ["attribute-$this->level-$this->position"],
                 "loading" => false,
                 'placeholder' => '...',
-                'url' => Url::to(['@constructor-comparison-url']),
+                'url' => $this->dataUrl,
                 'initialize' => true,
                 'initDepends' => "attribute-$this->level-$this->position",
             ]

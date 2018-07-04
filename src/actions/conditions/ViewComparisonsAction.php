@@ -8,15 +8,13 @@ use Yii;
 
 class ViewComparisonsAction extends DepDropAction
 {
-    protected $constructor;
+    public $constructor;
 
     public function __construct(
         $id,
         $module,
-        ConstructorService $constructor,
         array $config = []
     ) {
-        $this->constructor = $constructor;
         parent::__construct($id, $module, $config);
     }
 

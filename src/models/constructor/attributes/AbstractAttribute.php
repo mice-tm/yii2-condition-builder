@@ -68,7 +68,7 @@ class AbstractAttribute extends Model
             ['type', 'in', 'range' => self::$types],
             ['status', 'in', 'range' => self::$statuses],
             ['comparisons', 'each', 'rule' => ['in', 'range' => self::availableComparisons]],
-
+            ['data', 'safe'],
         ];
     }
 
@@ -79,5 +79,10 @@ class AbstractAttribute extends Model
         } catch (UnknownPropertyException $exception) {
 
         }
+    }
+
+    public function value($value)
+    {
+        return $value;
     }
 }
