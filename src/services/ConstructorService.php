@@ -58,6 +58,29 @@ class ConstructorService
         return $this->availableAttributes[$title];
     }
 
+    public function createConditionModels(array $rawData)
+    {
+        $result = [];
+
+        if (!is_array($rawData['conditions'])) {
+            return $result;
+        }
+
+        foreach ($rawData['conditions'] as $rawCondition) {
+            $condition = new Condition();
+            $condition->attributes = $rawCondition;
+
+            if ($condition->attribute) {
+                $condition->value = $this->getAttribute($condition->attribute)->value($condition->value);
+            }
+
+            $condition->conditionModels = $this->createConditionModels($rawCondition);
+            $result[] = $condition;
+        }
+
+        return $result;
+    }
+  
     private function initAvailableAttributesList(AttributeSearchInterface $attributeSearch)
     {
         return ArrayHelper::index(array_map(function (AttributeInterface $attribute) {
