@@ -4,7 +4,6 @@
 namespace micetm\conditions\widgets;
 
 
-use kartik\widgets\DatePicker;
 use kartik\widgets\DateTimePicker;
 use micetm\conditions\models\constructor\attributes\MultipleAttribute;
 use micetm\conditions\models\constructor\attributes\TimestampAttribute;
@@ -36,9 +35,9 @@ class Value extends Widget
 
     private function renderTimestamp()
     {
-        $input = DatePicker::widget([
+        $input = DateTimePicker::widget([
             'name' => $this->path,
-            'value' => \Yii::$app->formatter->asDate($this->model->value),
+            'value' => \Yii::$app->formatter->asDatetime($this->model->value),
             'convertFormat' => true,
         ]);
 
