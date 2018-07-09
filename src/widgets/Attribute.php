@@ -20,7 +20,7 @@ class Attribute extends Widget
 
     public function run()
     {
-        $items =  ArrayHelper::map($this->availableAttributes, 'key', 'key', 'level');
+        $items =  ArrayHelper::map($this->availableAttributes, 'key', 'title', 'level');
 
         $input = Html::dropDownList(
             $this->path,
