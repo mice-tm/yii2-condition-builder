@@ -3,11 +3,13 @@
 namespace micetm\conditions\actions\conditions;
 
 use kartik\depdrop\DepDropAction;
-use micetm\conditions\models\constructor\attributes\MultipleAttribute;
 use micetm\conditions\services\ConstructorService;
 
 class ViewValuesAction extends DepDropAction
 {
+    /**
+     * @var ConstructorService
+     */
     public $constructor;
 
     public function __construct(
@@ -21,7 +23,7 @@ class ViewValuesAction extends DepDropAction
     protected function getOutput($attribute, $params = [])
     {
         $model = $this->constructor->getAttribute($attribute);
-        if (!$model instanceof MultipleAttribute) {
+        if (!$model->multiple) {
             return [];
         }
         $values = $model->getData();

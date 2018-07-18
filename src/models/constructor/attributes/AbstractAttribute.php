@@ -33,6 +33,9 @@ class AbstractAttribute extends Model
     public $multiple = false;
 
     /** @var array */
+    public $data = [];
+
+    /** @var array */
     public $comparisons = self::availableComparisons;
 
     public static $types = [
@@ -84,5 +87,10 @@ class AbstractAttribute extends Model
     public function value($value)
     {
         return $value;
+    }
+
+    public function getData()
+    {
+        return $this->data;
     }
 }

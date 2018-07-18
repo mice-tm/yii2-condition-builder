@@ -5,7 +5,7 @@ namespace micetm\conditions\widgets;
 
 
 use kartik\widgets\DateTimePicker;
-use micetm\conditions\models\constructor\attributes\MultipleAttribute;
+use micetm\conditions\models\constructor\attributes\AbstractAttribute;
 use micetm\conditions\models\constructor\attributes\TimestampAttribute;
 use yii\base\Widget;
 use yii\bootstrap\Html;
@@ -19,12 +19,15 @@ class Value extends Widget
     public $level = 0;
     public $position = 0;
     public $disabled = false;
+    /**
+     * @var AbstractAttribute
+     */
     public $attribute = null;
     public $dataUrl;
 
     public function run()
     {
-        if ($this->attribute && $this->attribute instanceof MultipleAttribute) {
+        if ($this->attribute && $this->attribute->multiple || is_array($this->model->value)) {
             return $this->renderList();
         } if ($this->attribute && $this->attribute instanceof TimestampAttribute) {
             return $this->renderTimestamp();
@@ -53,6 +56,10 @@ TXT;
 
     public function renderList()
     {
+        $availableValues = array_merge(
+            array_combine((array)$this->model->value, (array)$this->model->value),
+            array_combine($this->attribute->getData(), $this->attribute->getData())
+        );
         $input = DepDrop::widget([
             'hashVarLoadPosition' => View::POS_END,
             'type' => DepDrop::TYPE_SELECT2,
@@ -67,7 +74,7 @@ TXT;
             'name' => $this->path,
             'value' => $this->model->value,
             'disabled' => $this->disabled,
-            'data' => array_combine($this->attribute->getData(), $this->attribute->getData()),
+            'data' => $availableValues,
             'options' => [
                 'id' => "value-$this->level-$this->position",
                 'class' => "depdrop-value form-control comparison-value"

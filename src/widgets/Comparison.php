@@ -31,6 +31,7 @@ class Comparison extends Widget
             'hashVarLoadPosition' => View::POS_END,
             'name' => $this->path,
             'value' => $this->model->comparison,
+            'disabled' => $this->disabled,
             'data' => $data,
             'options' => [
                 'id' => "comparison-$this->level-$this->position",
