@@ -8,6 +8,7 @@ use yii\base\UnknownPropertyException;
 class AbstractAttribute extends Model
 {
     const STATUS_ACTIVE = 'active';
+    const STATUS_INACTIVE = 'inactive';
 
     const TYPE_DEFAULT = 'default';
 
@@ -42,7 +43,8 @@ class AbstractAttribute extends Model
         'int', 'string', 'bool', 'multiple'
     ];
     public static $statuses = [
-        self::STATUS_ACTIVE, 'inactive'
+        self::STATUS_ACTIVE,
+        self::STATUS_INACTIVE
     ];
 
     const availableComparisons = [

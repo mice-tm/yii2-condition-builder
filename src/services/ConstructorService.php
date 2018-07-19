@@ -2,7 +2,6 @@
 
 namespace micetm\conditions\services;
 
-
 use micetm\conditions\models\constructor\attributes\AbstractAttribute;
 use micetm\conditions\models\constructor\attributes\activeRecords\Attribute;
 use micetm\conditions\models\constructor\attributes\activeRecords\AttributeInterface;
@@ -33,9 +32,39 @@ class ConstructorService
     /**
      * @return AbstractAttribute[]
      */
-    public function getAvailableAttributes()
+    public function getAvailableAttributes(\ArrayObject $conditions = null)
     {
+        if ($conditions) {
+            $this->initCustomAttributes($conditions);
+        }
         return $this->availableAttributes;
+    }
+
+    /**
+     * Retrives custom attributes from Conditions
+     * @param \ArrayObject|null $conditions
+     */
+    protected function initCustomAttributes(\ArrayObject $conditions = null)
+    {
+        foreach (iterator_to_array($conditions->getIterator()) as $condition) {
+            /** @var Condition $condition */
+            if (!$condition->isUnary()) {
+                $this->initCustomAttributes($condition->conditionModels);
+                continue;
+            }
+            if (empty($this->availableAttributes[$condition->attribute])) {
+                $this->availableAttributes[$condition->attribute] = $this->initAttribute(
+                    new Attribute([
+                        'title' => $condition->attribute,
+                        'level' => 'not defined',
+                        'type' => 'default',
+                        'key' => $condition->attribute,
+                        'status' => AbstractAttribute::STATUS_INACTIVE,
+                        'multiple' => is_array($condition->value),
+                    ])
+                );
+            }
+        }
     }
 
     protected function initAttribute(AttributeInterface $attribute)

@@ -6,6 +6,11 @@ use yii\base\Model;
 use yii2tech\embedded\ContainerInterface;
 use yii2tech\embedded\ContainerTrait;
 
+/**
+ * Class Condition
+ * @package micetm\conditions\models\constructor\conditions
+ * @property \ArrayObject $conditionModels
+ */
 class Condition extends Model implements ContainerInterface
 {
     use ContainerTrait;
