@@ -8,6 +8,7 @@ use yii\base\UnknownPropertyException;
 class AbstractAttribute extends Model
 {
     const STATUS_ACTIVE = 'active';
+    const STATUS_INACTIVE = 'inactive';
 
     const TYPE_DEFAULT = 'default';
 
@@ -33,13 +34,17 @@ class AbstractAttribute extends Model
     public $multiple = false;
 
     /** @var array */
+    public $data = [];
+
+    /** @var array */
     public $comparisons = self::availableComparisons;
 
     public static $types = [
         'int', 'string', 'bool', 'multiple'
     ];
     public static $statuses = [
-        self::STATUS_ACTIVE, 'inactive'
+        self::STATUS_ACTIVE,
+        self::STATUS_INACTIVE
     ];
 
     const availableComparisons = [
@@ -68,7 +73,7 @@ class AbstractAttribute extends Model
             ['type', 'in', 'range' => self::$types],
             ['status', 'in', 'range' => self::$statuses],
             ['comparisons', 'each', 'rule' => ['in', 'range' => self::availableComparisons]],
-
+            ['data', 'safe'],
         ];
     }
 
@@ -79,5 +84,15 @@ class AbstractAttribute extends Model
         } catch (UnknownPropertyException $exception) {
 
         }
+    }
+
+    public function value($value)
+    {
+        return $value;
+    }
+
+    public function getData()
+    {
+        return $this->data;
     }
 }

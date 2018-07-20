@@ -3,6 +3,11 @@
 namespace micetm\conditions\models\constructor\attributes;
 
 
+/**
+ * Class MultipleAttribute
+ * @package micetm\conditions\models\constructor\attributes
+ * @deprecated any attribute can be multiple and have data
+ */
 class MultipleAttribute extends AbstractAttribute
 {
     /** @var array */
