@@ -109,7 +109,7 @@ class ConstructorService
 
         return $result;
     }
-  
+
     private function initAvailableAttributesList(AttributeSearchInterface $attributeSearch)
     {
         return ArrayHelper::index(array_map(function (AttributeInterface $attribute) {
