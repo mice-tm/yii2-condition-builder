@@ -100,7 +100,8 @@ class ConstructorService
             $condition->attributes = $rawCondition;
 
             if ($condition->attribute) {
-                $condition->value = $this->getAttribute($condition->attribute)->value($condition->value);
+                $condition->value = $this->getAttribute($condition->attribute)
+                    ->value($condition->value);
             }
 
             $condition->conditionModels = $this->createConditionModels($rawCondition);

@@ -27,7 +27,7 @@ class Value extends Widget
 
     public function run()
     {
-        if ($this->attribute && ($this->attribute->multiple || is_array($this->model->value))) {
+        if ($this->attribute && ($this->attribute->getData() || is_array($this->model->value))) {
             return $this->renderList();
         } if ($this->attribute && $this->attribute instanceof TimestampAttribute) {
             return $this->renderTimestamp();
