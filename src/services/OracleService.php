@@ -3,6 +3,7 @@
 namespace micetm\conditions\services;
 
 use micetm\conditions\models\constructor\conditions\Condition;
+use yii\base\UnknownPropertyException;
 use yii\helpers\ArrayHelper;
 
 class OracleService implements OracleInterface
@@ -23,7 +24,11 @@ class OracleService implements OracleInterface
     public function speak(Condition $condition, $target): bool
     {
         if ($condition->isUnary()) {
-            $value = (array) ArrayHelper::getValue($target, $condition->attribute);
+            try {
+                $value = (array) ArrayHelper::getValue($target, $condition->attribute);
+            } catch (UnknownPropertyException $exception) {
+                return false;
+            }
             if (empty($value)) {
                 return false;
             }
