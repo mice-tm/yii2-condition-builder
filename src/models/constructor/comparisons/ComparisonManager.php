@@ -8,6 +8,9 @@ class ComparisonManager
 {
     const AVAILABLE_COMPARISONS = [
         SizeComparison::class,
+        RangeComparison::class,
+        LikeComparison::class,
+        InComparison::class,
         DefaultComparison::class
     ];
 
