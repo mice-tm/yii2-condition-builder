@@ -22,10 +22,11 @@ class ComparisonHelper
     /**
      * @param Condition $condition
      * @param $value
+     * @return bool
      */
-    static public function compare(Condition $condition, $value)
+    public static function compare(Condition $condition, $value)
     {
-        if (empty(self::COMPARISONS_ASSERTS[$condition->comparison])){
+        if (empty(self::COMPARISONS_ASSERTS[$condition->comparison])) {
             return self::in($condition->value, $value);
         }
 
@@ -37,7 +38,7 @@ class ComparisonHelper
      * @param mixed $b
      * @return bool
      */
-    static public function in($a, $b)
+    public static function in($a, $b)
     {
         return !empty(array_intersect((array)$a, (array)$b));
     }
@@ -47,7 +48,7 @@ class ComparisonHelper
      * @param mixed $b
      * @return bool
      */
-    static public function eq($a, $b)
+    public static function eq($a, $b)
     {
         return $a === $b;
     }
@@ -57,7 +58,7 @@ class ComparisonHelper
      * @param mixed $b
      * @return bool
      */
-    static public function gt($a, $b)
+    public static function gt($a, $b)
     {
         return $a > $b;
     }
@@ -67,7 +68,7 @@ class ComparisonHelper
      * @param mixed $b
      * @return bool
      */
-    static public function gte($a, $b)
+    public static function gte($a, $b)
     {
         return $a >= $b;
     }
@@ -77,7 +78,7 @@ class ComparisonHelper
      * @param mixed $b
      * @return bool
      */
-    static public function lt($a, $b)
+    public static function lt($a, $b)
     {
         return $a < $b;
     }
@@ -87,7 +88,7 @@ class ComparisonHelper
      * @param mixed $b
      * @return bool
      */
-    static public function lte($a, $b)
+    public static function lte($a, $b)
     {
         return $a <= $b;
     }
@@ -97,7 +98,7 @@ class ComparisonHelper
      * @param mixed $b
      * @return bool
      */
-    static public function like($a, $b)
+    public static function like($a, $b)
     {
         return false !== strpos($b, $a);
     }
