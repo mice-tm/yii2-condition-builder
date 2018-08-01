@@ -4,11 +4,15 @@ namespace micetm\conditions\actions\conditions;
 
 use micetm\conditions\models\constructor\attributes\AbstractAttribute;
 use micetm\conditions\models\constructor\conditions\Condition;
+use micetm\conditions\services\ConstructorService;
 use yii\base\Action;
 use Yii;
 
 class CreateAction extends Action
 {
+    /**
+     * @var ConstructorService
+     */
     public $constructor;
     public $defaultAttribute;
     public $defaultValue;
@@ -57,5 +61,4 @@ class CreateAction extends Action
             'valueUrl' => $this->valueUrl
         ]);
     }
-
 }

@@ -2,10 +2,8 @@
 
 namespace micetm\conditions\services;
 
-use api\modules\api\v1\models\items\Product;
 use micetm\conditions\models\constructor\attributes\AbstractAttribute;
 use micetm\conditions\models\constructor\conditions\Condition;
-use yii\helpers\ArrayHelper;
 
 class ComparisonHelper
 {

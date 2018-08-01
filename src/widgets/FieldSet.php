@@ -1,6 +1,4 @@
 <?php
-
-
 namespace micetm\conditions\widgets;
 
 use yii\helpers\ArrayHelper;

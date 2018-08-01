@@ -1,5 +1,4 @@
 <?php
-
 namespace micetm\conditions;
 
 use kartik\select2\Select2Asset;

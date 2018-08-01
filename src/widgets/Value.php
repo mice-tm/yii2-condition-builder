@@ -1,6 +1,4 @@
 <?php
-
-
 namespace micetm\conditions\widgets;
 
 use micetm\conditions\models\constructor\attributes\AbstractAttribute;
@@ -96,7 +94,6 @@ TXT;
 </div>
 TXT;
     }
-
 
     public function renderInput()
     {
