@@ -38,6 +38,6 @@ class SizeComparison implements ComparisonInterface
 
     private function filterOperator($logicOperator)
     {
-        return '==' == $logicOperator ? '=' : $logicOperator,
+        return '==' == $logicOperator ? '=' : $logicOperator;
     }
 }
