@@ -15,7 +15,9 @@ class LikeComparison implements ComparisonInterface
 
     public function buildFilter(Condition $condition): array
     {
-        $query["match"][$condition->attribute] = $condition->value;
+        $query["bool"][Query::OPERATOR_OR][]["match"][$condition->attribute] = $condition->value;
+        $query["bool"][Query::OPERATOR_OR][]["wildcard"][$condition->attribute . '.raw'] =
+            '*' . strtolower($condition->value) . '*';
         return $query;
     }
 }
