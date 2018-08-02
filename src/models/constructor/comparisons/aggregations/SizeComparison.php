@@ -16,7 +16,7 @@ class SizeComparison implements ComparisonInterface
         $query['bool']["filter"]['script']['script'] = sprintf(
             "doc['%s'].values.size() %s %d",
             $matches[1],
-            $condition->comparison,
+            $this->filterOperator($condition->comparison),
             $condition->value
         );
         return $query;
@@ -34,5 +34,10 @@ class SizeComparison implements ComparisonInterface
             $subject,
             $matches
         );
+    }
+
+    private function filterOperator($logicOperator)
+    {
+        return '==' == $logicOperator ? '=' : $logicOperator,
     }
 }
