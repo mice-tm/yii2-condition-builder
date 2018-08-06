@@ -8,6 +8,9 @@ use Yii;
 
 class ViewComparisonsAction extends DepDropAction
 {
+    /**
+     * @var ConstructorService
+     */
     public $constructor;
 
     public function __construct(
@@ -20,7 +23,7 @@ class ViewComparisonsAction extends DepDropAction
 
     protected function getOutput($attribute, $params = [])
     {
-        $model = $this->constructor->getAttribute($attribute);
+        $model = $this->constructor->getAttribute($attribute, Yii::$app->getRequest()->post('filterParams'));
         $comparisons = $model->comparisons;
         array_walk($comparisons, function (&$comparison, $i) {
             $comparison = [

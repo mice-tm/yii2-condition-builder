@@ -39,7 +39,9 @@ class CreateAction extends Action
 
     public function run()
     {
-        $availableAttributes = $this->constructor->getAvailableAttributes();
+        $availableAttributes = $this->constructor->getAvailableAttributes(
+            Yii::$app->getRequest()->post('filterParams')
+        );
 
         $request = Yii::$app->getRequest();
         $level = $request->getBodyParam('level', null);

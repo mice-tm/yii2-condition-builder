@@ -4,6 +4,7 @@ namespace micetm\conditions\actions\conditions;
 
 use kartik\depdrop\DepDropAction;
 use micetm\conditions\services\ConstructorService;
+use Yii;
 
 class ViewValuesAction extends DepDropAction
 {
@@ -22,7 +23,7 @@ class ViewValuesAction extends DepDropAction
 
     protected function getOutput($attribute, $params = [])
     {
-        $model = $this->constructor->getAttribute($attribute);
+        $model = $this->constructor->getAttribute($attribute, Yii::$app->getRequest()->post('filterParams'));
         if (!$model->multiple) {
             return [];
         }

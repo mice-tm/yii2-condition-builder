@@ -8,9 +8,11 @@ use micetm\conditions\models\constructor\attributes\activeRecords\AttributeInter
 use micetm\conditions\models\constructor\conditions\Condition;
 use micetm\conditions\models\constructor\exceptions\AttributeNotFoundException;
 use micetm\conditions\models\constructor\search\AttributeSearchInterface;
+use templatemonster\admin\modules\discounts\models\search\AttributesSearch;
+use yii\base\Component;
 use yii\helpers\ArrayHelper;
 
-class ConstructorService
+class ConstructorService extends Component
 {
     /**
      * @var AbstractAttribute[]
@@ -22,37 +24,37 @@ class ConstructorService
      */
     protected $attributes;
 
-    public function __construct(AttributeSearchInterface $attributeSearch, array $attributes)
-    {
-        $this->attributes = $attributes;
-        $this->availableAttributes = $this->initAvailableAttributesList($attributeSearch);
-    }
+    /**
+     * @var AttributesSearch
+     */
+    protected $attributeSearch;
 
     /**
      * @return AbstractAttribute[]
      */
-    public function getAvailableAttributes(\ArrayObject $conditions = null)
+    public function getAvailableAttributes($params = [], \ArrayObject $conditions = null)
     {
+        $availableAttributes = $this->initAvailableAttributesList($params);
         if ($conditions) {
-            $this->initCustomAttributes($conditions);
+            $this->initCustomAttributes($conditions, $availableAttributes);
         }
-        return $this->availableAttributes;
+        return $availableAttributes;
     }
 
     /**
      * Retrives custom attributes from Conditions
      * @param \ArrayObject|null $conditions
      */
-    protected function initCustomAttributes(\ArrayObject $conditions = null)
+    protected function initCustomAttributes(\ArrayObject $conditions = null, &$availableAttributes)
     {
         foreach (iterator_to_array($conditions->getIterator()) as $condition) {
             /** @var Condition $condition */
             if (!$condition->isUnary()) {
-                $this->initCustomAttributes($condition->conditionModels);
+                $this->initCustomAttributes($condition->conditionModels, $availableAttributes);
                 continue;
             }
             if (empty($this->availableAttributes[$condition->attribute])) {
-                $this->availableAttributes[$condition->attribute] = $this->initAttribute(
+                $availableAttributes[$condition->attribute] = $this->initAttribute(
                     new Attribute([
                         'title' => $condition->attribute,
                         'level' => 'not defined',
@@ -78,12 +80,13 @@ class ConstructorService
         return $model;
     }
 
-    public function getAttribute($title)
+    public function getAttribute($title, $extraFilters = [])
     {
-        if (!isset($this->availableAttributes[$title])) {
+        $availableAttributes = $this->initAvailableAttributesList($extraFilters);
+        if (!isset($availableAttributes[$title])) {
             throw new AttributeNotFoundException($title);
         }
-        return $this->availableAttributes[$title];
+        return $availableAttributes[$title];
     }
 
     public function createConditionModels(array $rawData)
@@ -110,10 +113,27 @@ class ConstructorService
         return $result;
     }
 
-    private function initAvailableAttributesList(AttributeSearchInterface $attributeSearch)
+    protected function initAvailableAttributesList($params = [])
     {
+        $this->attributeSearch->load($params, '');
         return ArrayHelper::index(array_map(function (AttributeInterface $attribute) {
             return $this->initAttribute($attribute);
-        }, $attributeSearch->search()->all()), 'key');
+        }, $this->attributeSearch->search()->all()), 'key');
+    }
+
+    /**
+     * @param array $attributes
+     */
+    public function setAttributes(array $attributes): void
+    {
+        $this->attributes = $attributes;
+    }
+
+    /**
+     * @param AttributesSearch $attributeSearch
+     */
+    public function setAttributeSearch(AttributesSearch $attributeSearch): void
+    {
+        $this->attributeSearch = $attributeSearch;
     }
 }
