@@ -3,7 +3,6 @@
 namespace micetm\conditions\services;
 
 use micetm\conditions\models\constructor\conditions\Condition;
-use yii\helpers\ArrayHelper;
 
 interface OracleInterface
 {

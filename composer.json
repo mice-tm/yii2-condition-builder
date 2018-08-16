@@ -18,7 +18,9 @@
   "require": {
     "php": ">=7.1.0",
     "yiisoft/yii2": "^2.0.13",
-    "kartik-v/yii2-widgets": "*"
+    "yii2tech/embedded": "^1.0",
+    "kartik-v/yii2-widgets": "*",
+    "trntv/yii2-datetime-widget": "dev-master"
   },
   "config": {
     "process-timeout": 1800

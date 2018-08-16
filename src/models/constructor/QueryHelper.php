@@ -2,6 +2,7 @@
 
 namespace micetm\conditions\models\constructor;
 
+use micetm\conditions\models\constructor\comparisons\ComparisonManager;
 use micetm\conditions\models\constructor\queries\Query;
 
 class QueryHelper
@@ -16,7 +17,7 @@ class QueryHelper
         $query = [];
         if ($conditions instanceof \ArrayObject || is_array($conditions)) {
             foreach ($conditions as $condition) {
-                $queryModel = new Query($condition);
+                $queryModel = new Query(new ComparisonManager(), $condition);
                 $query[] = $queryModel->getQuery();
             }
         }

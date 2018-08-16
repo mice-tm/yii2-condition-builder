@@ -1,6 +1,4 @@
 <?php
-
-
 namespace micetm\conditions\widgets;
 
 use micetm\conditions\models\constructor\conditions\Condition;

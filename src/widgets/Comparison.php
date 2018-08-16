@@ -1,5 +1,4 @@
 <?php
-
 namespace micetm\conditions\widgets;
 
 use kartik\depdrop\DepDrop;

@@ -23,11 +23,10 @@ class ViewValuesAction extends DepDropAction
     protected function getOutput($attribute, $params = [])
     {
         $model = $this->constructor->getAttribute($attribute);
-        $values = $model->getData();
-        if (!$values) {
+        if (!$model->multiple) {
             return [];
         }
-
+        $values = $model->getData();
         array_walk($values, function (&$value, $i) {
             $value = [
                 'id' => $value,
