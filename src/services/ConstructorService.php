@@ -51,18 +51,8 @@ class ConstructorService
                 $this->initCustomAttributes($condition->conditionModels);
                 continue;
             }
-            if (empty($this->availableAttributes[$condition->attribute])) {
-                $this->availableAttributes[$condition->attribute] = $this->initAttribute(
-                    new Attribute([
-                        'title' => $condition->attribute,
-                        'level' => 'not defined',
-                        'type' => 'default',
-                        'key' => $condition->attribute,
-                        'status' => AbstractAttribute::STATUS_INACTIVE,
-                        'multiple' => is_array($condition->value),
-                    ])
-                );
-            }
+
+            $this->initCustomAttributeIfNotExist($condition);
         }
     }
 
@@ -99,12 +89,9 @@ class ConstructorService
             $condition->attributes = $rawCondition;
 
             if ($condition->attribute) {
-                try {
-                    $condition->value = $this->getAttribute($condition->attribute)
-                        ->value($condition->value);
-                } catch (AttributeNotFoundException $e) {
-                    continue ;
-                }
+                $this->initCustomAttributeIfNotExist($condition);
+                $condition->value = $this->getAttribute($condition->attribute)
+                    ->value($condition->value);
             }
 
             $condition->conditionModels = $this->createConditionModels($rawCondition);
@@ -119,5 +106,27 @@ class ConstructorService
         return ArrayHelper::index(array_map(function (AttributeInterface $attribute) {
             return $this->initAttribute($attribute);
         }, $attributeSearch->search()->all()), 'key');
+    }
+
+    /**
+     * Init custom attribute if it is set but not in attributes repository
+     * @param Condition $condition
+     */
+    private function initCustomAttributeIfNotExist(Condition $condition)
+    {
+        if (!empty($this->availableAttributes[$condition->attribute])) {
+            return ;
+        }
+
+        $this->availableAttributes[$condition->attribute] = $this->initAttribute(
+            new Attribute([
+                'title' => $condition->attribute,
+                'level' => 'not defined',
+                'type' => 'default',
+                'key' => $condition->attribute,
+                'status' => AbstractAttribute::STATUS_INACTIVE,
+                'multiple' => is_array($condition->value),
+            ])
+        );
     }
 }
