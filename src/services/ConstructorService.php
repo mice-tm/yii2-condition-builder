@@ -99,8 +99,12 @@ class ConstructorService
             $condition->attributes = $rawCondition;
 
             if ($condition->attribute) {
-                $condition->value = $this->getAttribute($condition->attribute)
-                    ->value($condition->value);
+                try {
+                    $condition->value = $this->getAttribute($condition->attribute)
+                        ->value($condition->value);
+                } catch (AttributeNotFoundException $e) {
+                    continue ;
+                }
             }
 
             $condition->conditionModels = $this->createConditionModels($rawCondition);
