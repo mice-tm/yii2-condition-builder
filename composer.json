@@ -21,7 +21,7 @@
     "yiisoft/yii2": "^2.0.13",
     "yii2tech/embedded": "^1.0",
     "kartik-v/yii2-widgets": "*",
-    "trntv/yii2-datetime-widget": "dev-master"
+    "trntv/yii2-datetime-widget": "~1.1.0"
   },
   "config": {
     "process-timeout": 1800
