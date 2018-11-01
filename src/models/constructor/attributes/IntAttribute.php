@@ -13,6 +13,7 @@ class IntAttribute extends AbstractAttribute
         '>',
         '>=',
         '<',
-        '<='
+        '<=',
+        'in',
     ];
 }
