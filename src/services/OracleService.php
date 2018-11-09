@@ -25,7 +25,7 @@ class OracleService implements OracleInterface
     {
         if ($condition->isUnary()) {
             try {
-                $value = (array) ArrayHelper::getValue($target, $condition->attribute);
+                $value = ArrayHelper::getValue($target, $condition->attribute);
             } catch (UnknownPropertyException $exception) {
                 return false;
             }
