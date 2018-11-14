@@ -23,7 +23,6 @@ class Operator extends Widget
             Condition::$operators,
             [
                 'class' => 'form-control condition-operator',
-                'disabled' => $this->disabled
             ]
         );
 
