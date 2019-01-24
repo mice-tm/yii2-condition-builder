@@ -43,5 +43,7 @@ class RangeComparison implements ComparisonInterface
                 = $condition->value;
             return $query;
         }
+
+        return [];
     }
 }

@@ -7,7 +7,7 @@ use micetm\conditions\models\constructor\conditions\Condition;
 use micetm\conditions\services\QueryBuilder;
 use PHPUnit\Framework\TestCase;
 
-class MyTest extends TestCase
+class QueriesTest extends TestCase
 {
     /**
      * @dataProvider providerUnarySuccess
