@@ -16,14 +16,24 @@
       "micetm\\conditions\\": "src"
     }
   },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ],
   "require": {
     "php": ">=7.1.0",
-    "yiisoft/yii2": "^2.0.13",
-    "yii2tech/embedded": "^1.0",
+    "yiisoft/yii2": "2.0.15.1",
+    "yii2tech/embedded": "~1.0.3",
     "kartik-v/yii2-widgets": "~3.4.0",
-    "trntv/yii2-datetime-widget": "~1.1.0"
+    "trntv/yii2-datetime-widget": "~1.1.0",
+    "oomphinc/composer-installers-extender": "^1.1.2"
   },
   "config": {
     "process-timeout": 1800
+  },
+  "require-dev": {
+    "codeception/codeception": "2.5.x-dev"
   }
 }
