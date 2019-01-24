@@ -15,4 +15,7 @@ coverage:
   remote: false
   whitelist:
     include:
-      - src/*
+      - src/services/*
+      - src/models/constructor/comparisons/*
+      - src/models/constructor/queries/*
+      - src/models/constructor/QueryHelper.php

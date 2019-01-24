@@ -5,12 +5,7 @@
 actor: UnitTester
 
 modules:
-    enabled:
-        - Asserts
-        - \Helper\Unit
-    coverage:
-        enabled: true
-        remote: false
-        whitelist:
-            include:
-                - src/*
+  enabled:
+    - Asserts
+    - \Helper\Unit
+

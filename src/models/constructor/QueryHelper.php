@@ -11,16 +11,19 @@ class QueryHelper
     /**
      * @param $conditions
      * @return array
+     * @throws \micetm\conditions\exceptions\WrongComparison
      */
     public static function create($conditions)
     {
         $query = [];
+
         if ($conditions instanceof \ArrayObject || is_array($conditions)) {
             foreach ($conditions as $condition) {
                 $queryModel = new Query(new ComparisonManager(), $condition);
                 $query[] = $queryModel->getQuery();
             }
         }
+
         if (empty($query)) {
             return [];
         }

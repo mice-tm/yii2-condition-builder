@@ -38,7 +38,8 @@ class Query
     }
 
     /**
-     * @return array
+     * @return array|null
+     * @throws \micetm\conditions\exceptions\WrongComparison
      */
     public function getQuery()
     {
@@ -52,9 +53,6 @@ class Query
             return $query;
         } elseif ($this->condition->attribute) {
             $comparison = $this->comparisonManager->getComparison($this->condition);
-            if (empty($comparison)) {
-                return;
-            }
             return $comparison->buildFilter($this->condition);
         }
         return;
