@@ -29,3 +29,16 @@ to the require section of your `composer.json` file.
 Usage
 -----
 
+
+Tests
+-----
+
+```bash
+vendor/bin/codecept run unit --coverage --coverage-html
+```
+
+or run 1
+
+```bash
+vendor/bin/codecept run unit QueriesTest:testComplexQuerySuccessCreation --coverage --coverage-html
+```

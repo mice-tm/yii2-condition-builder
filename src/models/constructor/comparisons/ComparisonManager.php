@@ -12,7 +12,8 @@ class ComparisonManager
         RangeComparison::class,
         LikeComparison::class,
         InComparison::class,
-        DefaultComparison::class
+        DefaultComparison::class,
+        EmbeddedComparison::class
     ];
 
     /**

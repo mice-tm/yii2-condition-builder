@@ -64,6 +64,7 @@ class AbstractAttribute extends Model
     const LESS_THAN_OR_EQUAL_TO_COMPARISON = '<=';
     const LIKE_COMPARISON = 'like';
     const MORE_THAN_ONE_IN_COMPARISON = 'in';
+    const EMBEDDED_COMPARISON = 'embedded';
 
     public function rules()
     {

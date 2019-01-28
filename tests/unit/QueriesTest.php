@@ -208,6 +208,7 @@ class QueriesTest extends TestCase
     public function providerComplexQuerySuccessCreation()
     {
         $now = time();
+
         return [
             [
                 'condition' => [new Condition([
@@ -267,6 +268,61 @@ class QueriesTest extends TestCase
                             ]
                         ],
                     ],
+                ],
+            ],
+            [
+                'condition' => [new Condition([
+                    'operator' => Condition::OPERATOR_AND,
+                    'conditions' => [
+                        [
+                            'attribute' => 'flatConditions',
+                            'comparison' => AbstractAttribute::EMBEDDED_COMPARISON,
+                            'value' => [
+                                "attribute" => "cart.attributes.affiliate",
+                                "value" => "promkod",
+                            ]
+                        ],
+                        [
+                            'attribute' => 'start_at',
+                            'comparison' => AbstractAttribute::LESS_THAN_OR_EQUAL_TO_COMPARISON,
+                            'value' => $now,
+                        ]
+                    ]
+                ])],
+                'expectedQuery' => [
+                    "query" => [
+                        "bool" => [
+                            "must" => [
+                                [
+                                    "nested" => [
+                                        "path" => "flatConditions",
+                                        "score_mode" => "avg",
+                                        "query" => [
+                                            "bool" => [
+                                                "must" => [
+                                                    [
+                                                        "match" => [
+                                                            "flatConditions.attribute" =>
+                                                                "cart.attributes.affiliate"
+                                                        ]
+                                                    ],
+                                                    [
+                                                        "match" => [
+                                                            "flatConditions.value" => "promkod"
+                                                        ]
+                                                    ]
+                                                ]
+                                            ]
+                                        ]
+                                    ]],
+                                [
+                                    "range" => [
+                                        "start_at" => ["lte" => $now]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
                 ],
             ],
 
