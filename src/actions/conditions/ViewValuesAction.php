@@ -29,11 +29,11 @@ class ViewValuesAction extends DepDropAction
         }
         array_walk($values, function (&$value, $i) {
             $value = [
-                'id' => $value,
+                'id' => $i,
                 'name' => $value,
             ];
         });
 
-        return $values;
+        return array_values($values);
     }
 }

@@ -54,8 +54,9 @@ TXT;
     public function renderList()
     {
         $availableValues =
-            array_combine((array)$this->model->value, (array)$this->model->value) +
-            array_combine($this->attribute->getData(), $this->attribute->getData());
+            $this->attribute->getData() +
+            array_combine((array)$this->model->value, (array)$this->model->value)
+            ;
         $input = DepDrop::widget([
             'hashVarLoadPosition' => View::POS_END,
             'type' => DepDrop::TYPE_SELECT2,
