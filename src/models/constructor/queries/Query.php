@@ -44,6 +44,7 @@ class Query
     public function getQuery()
     {
         if (count($this->condition->conditionModels)) {
+            $query = [];
             foreach ($this->condition->conditionModels as $condition) {
                 $queryModel = new self($this->comparisonManager, $condition);
                 if (!empty($filter = $queryModel->getQuery())) {
