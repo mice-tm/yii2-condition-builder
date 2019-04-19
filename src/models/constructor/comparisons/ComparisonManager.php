@@ -1,7 +1,8 @@
 <?php
 namespace micetm\conditions\models\constructor\comparisons;
 
-use micetm\conditions\models\constructor\exceptions\WrongComparison;
+use micetm\conditionsBase\exceptions\WrongComparison;
+use micetm\conditionsBase\models\ComparisonInterface;
 use micetm\conditions\models\constructor\comparisons\aggregations\SizeComparison;
 use micetm\conditions\models\constructor\conditions\Condition;
 

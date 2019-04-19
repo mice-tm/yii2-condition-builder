@@ -2,8 +2,8 @@
 
 namespace micetm\conditions\models\constructor\comparisons\aggregations;
 
-use micetm\conditions\models\constructor\comparisons\ComparisonInterface;
 use micetm\conditions\models\constructor\conditions\Condition;
+use micetm\conditionsBase\models\ComparisonInterface;
 
 class SizeComparison implements ComparisonInterface
 {

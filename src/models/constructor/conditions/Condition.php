@@ -2,6 +2,7 @@
 
 namespace micetm\conditions\models\constructor\conditions;
 
+use micetm\conditionsBase\models\ConditionInterface;
 use yii\base\Model;
 use yii2tech\embedded\ContainerInterface;
 use yii2tech\embedded\ContainerTrait;
@@ -11,7 +12,7 @@ use yii2tech\embedded\ContainerTrait;
  * @package micetm\conditions\models\constructor\conditions
  * @property \ArrayObject $conditionModels
  */
-class Condition extends Model implements ContainerInterface
+class Condition extends Model implements ContainerInterface, ConditionInterface
 {
     use ContainerTrait;
 

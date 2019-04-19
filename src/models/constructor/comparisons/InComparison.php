@@ -5,6 +5,7 @@ namespace micetm\conditions\models\constructor\comparisons;
 use micetm\conditions\models\constructor\attributes\AbstractAttribute;
 use micetm\conditions\models\constructor\conditions\Condition;
 use micetm\conditions\models\constructor\queries\Query;
+use micetm\conditionsBase\models\ComparisonInterface;
 
 class InComparison implements ComparisonInterface
 {

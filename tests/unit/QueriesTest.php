@@ -1,10 +1,10 @@
 <?php
 namespace test\unit;
 
-use micetm\conditions\models\constructor\exceptions\WrongComparison;
 use micetm\conditions\models\constructor\attributes\AbstractAttribute;
 use micetm\conditions\models\constructor\conditions\Condition;
 use micetm\conditions\services\QueryBuilder;
+use micetm\conditionsBase\exceptions\WrongComparison;
 use PHPUnit\Framework\TestCase;
 
 class QueriesTest extends TestCase

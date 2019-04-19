@@ -4,6 +4,8 @@ namespace micetm\conditions\models\constructor;
 
 use micetm\conditions\models\constructor\comparisons\ComparisonManager;
 use micetm\conditions\models\constructor\queries\Query;
+use micetm\conditionsBase\exceptions\WrongComparison;
+
 
 class QueryHelper
 {
@@ -11,7 +13,7 @@ class QueryHelper
     /**
      * @param $conditions
      * @return array
-     * @throws \micetm\conditions\exceptions\WrongComparison
+     * @throws WrongComparison
      */
     public static function create($conditions)
     {
