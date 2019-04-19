@@ -1,6 +1,6 @@
 <?php
 
-namespace micetm\conditions\models\constructor\comparisons;
+namespace micetm\conditions\services\builders\elasticsearch\comparisons;
 
 use micetm\conditions\models\constructor\attributes\AbstractAttribute;
 use micetm\conditions\models\constructor\conditions\Condition;

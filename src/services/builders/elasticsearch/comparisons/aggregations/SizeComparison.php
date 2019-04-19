@@ -1,6 +1,6 @@
 <?php
 
-namespace micetm\conditions\models\constructor\comparisons\aggregations;
+namespace micetm\conditions\services\builders\elasticsearch\comparisons\aggregations;
 
 use micetm\conditions\models\constructor\conditions\Condition;
 use micetm\conditionsBase\models\ComparisonInterface;

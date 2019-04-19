@@ -10,6 +10,7 @@ use micetm\conditionsBase\exceptions\WrongComparison;
 class QueryHelper
 {
 
+
     /**
      * @param $conditions
      * @return array
@@ -22,7 +23,7 @@ class QueryHelper
         if ($conditions instanceof \ArrayObject || is_array($conditions)) {
             foreach ($conditions as $condition) {
                 $queryModel = new Query(new ComparisonManager(), $condition);
-                $query[] = $queryModel->getQuery();
+                $query[] = $this->getQuery();
             }
         }
 

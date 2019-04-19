@@ -1,5 +1,5 @@
 <?php
-namespace micetm\conditions\models\constructor\comparisons;
+namespace micetm\conditions\services\builders\elasticsearch\comparisons;
 
 use micetm\conditionsBase\exceptions\WrongComparison;
 use micetm\conditionsBase\models\ComparisonInterface;
