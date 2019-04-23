@@ -2,8 +2,8 @@
 
 namespace micetm\conditions\models\constructor;
 
-use micetm\conditions\models\constructor\attributes\AbstractAttribute;
 use micetm\conditions\models\constructor\attributes\activeRecords\Attribute;
+use micetm\conditionsBase\models\AttributeInterface;
 use yii\base\BaseObject;
 use yii\db\ActiveQueryInterface;
 
@@ -27,7 +27,7 @@ class AttributesRepository extends BaseObject
     public function getAvailableAttributes()
     {
         return $this->attributesQuery
-            ->where(['status' => AbstractAttribute::STATUS_ACTIVE ])
+            ->where(['status' => AttributeInterface::STATUS_ACTIVE ])
             ->orderBy(['key' => SORT_ASC])
             ->limit(50)
             ->all();

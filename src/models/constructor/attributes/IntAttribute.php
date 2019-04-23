@@ -2,7 +2,9 @@
 
 namespace micetm\conditions\models\constructor\attributes;
 
-class IntAttribute extends AbstractAttribute
+use micetm\conditionsBase\models\AttributeInterface;
+
+class IntAttribute extends AbstractAttribute implements AttributeInterface
 {
 
     /** @var array */

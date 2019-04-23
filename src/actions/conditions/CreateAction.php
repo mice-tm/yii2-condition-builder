@@ -2,9 +2,9 @@
 
 namespace micetm\conditions\actions\conditions;
 
-use micetm\conditions\models\constructor\attributes\AbstractAttribute;
 use micetm\conditions\models\constructor\conditions\Condition;
 use micetm\conditions\services\ConstructorService;
+use micetm\conditionsBase\models\AttributeInterface;
 use yii\base\Action;
 use Yii;
 
@@ -16,7 +16,7 @@ class CreateAction extends Action
     public $constructor;
     public $defaultAttribute;
     public $defaultValue;
-    public $defaultComparison = AbstractAttribute::EQUAL_TO_COMPARISON;
+    public $defaultComparison = AttributeInterface::EQUAL_TO_COMPARISON;
     public $comparisonUrl;
     public $valueUrl;
 

@@ -2,7 +2,9 @@
 
 namespace micetm\conditions\models\constructor\attributes;
 
-class BoolAttribute extends AbstractAttribute
+use micetm\conditionsBase\models\AttributeInterface;
+
+class BoolAttribute extends AbstractAttribute implements AttributeInterface
 {
     public $comparisons = self::availableComparisons;
 

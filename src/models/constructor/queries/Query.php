@@ -3,7 +3,6 @@
 namespace micetm\conditions\models\constructor\queries;
 
 
-use micetm\conditions\models\constructor\attributes\AbstractAttribute;
 use micetm\conditions\models\constructor\comparisons\ComparisonManager;
 use micetm\conditions\models\constructor\conditions\Condition;
 use micetm\conditionsBase\exceptions\WrongComparison;

@@ -2,10 +2,11 @@
 
 namespace micetm\conditions\models\constructor\attributes;
 
+use micetm\conditionsBase\models\AttributeInterface;
 use yii\base\Model;
 use yii\base\UnknownPropertyException;
 
-class AbstractAttribute extends Model
+class AbstractAttribute extends Model implements AttributeInterface
 {
     const STATUS_ACTIVE = 'active';
     const STATUS_INACTIVE = 'inactive';

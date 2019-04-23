@@ -2,7 +2,9 @@
 
 namespace micetm\conditions\models\constructor\attributes;
 
-class StringAttribute extends AbstractAttribute
+use micetm\conditionsBase\models\AttributeInterface;
+
+class StringAttribute extends AbstractAttribute implements AttributeInterface
 {
 //    const availableComparisons = [
 //        self::EQUAL_TO_COMPARISON => self::EQUAL_TO_COMPARISON,

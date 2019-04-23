@@ -2,19 +2,20 @@
 
 namespace micetm\conditions\services;
 
-use micetm\conditions\models\constructor\attributes\AbstractAttribute;
+use micetm\conditionsBase\models\AttributeInterface;
 use micetm\conditions\models\constructor\conditions\Condition;
+use yii\db\conditions\ConditionInterface;
 
 class ComparisonHelper
 {
     const COMPARISONS_ASSERTS = [
-        AbstractAttribute::EQUAL_TO_COMPARISON => 'eq',
-        AbstractAttribute::GREATER_THAN_COMPARISON => 'gt',
-        AbstractAttribute::GREATER_THAN_OR_EQUAL_TO_COMPARISON => 'gte',
-        AbstractAttribute::LESS_THAN_COMPARISON => 'lt',
-        AbstractAttribute::LESS_THAN_OR_EQUAL_TO_COMPARISON => 'lte',
-        AbstractAttribute::LIKE_COMPARISON => 'like',
-        AbstractAttribute::MORE_THAN_ONE_IN_COMPARISON => 'in',
+        AttributeInterface::EQUAL_TO_COMPARISON => 'eq',
+        AttributeInterface::GREATER_THAN_COMPARISON => 'gt',
+        AttributeInterface::GREATER_THAN_OR_EQUAL_TO_COMPARISON => 'gte',
+        AttributeInterface::LESS_THAN_COMPARISON => 'lt',
+        AttributeInterface::LESS_THAN_OR_EQUAL_TO_COMPARISON => 'lte',
+        AttributeInterface::LIKE_COMPARISON => 'like',
+        AttributeInterface::MORE_THAN_ONE_IN_COMPARISON => 'in',
     ];
 
     /**
@@ -22,7 +23,7 @@ class ComparisonHelper
      * @param $value
      * @return bool
      */
-    public static function compare(Condition $condition, $value)
+    public static function compare(ConditionInterface $condition, $value)
     {
         if (empty(self::COMPARISONS_ASSERTS[$condition->comparison])) {
             return self::in($condition->value, $value);

@@ -1,7 +1,9 @@
 <?php
 namespace micetm\conditions\models\constructor\attributes;
 
-class TimestampAttribute extends AbstractAttribute
+use micetm\conditionsBase\models\AttributeInterface;
+
+class TimestampAttribute extends AbstractAttribute implements AttributeInterface
 {
     /** @var array */
     public $comparisons = self::availableComparisons;

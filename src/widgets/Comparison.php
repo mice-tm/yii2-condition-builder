@@ -2,7 +2,7 @@
 namespace micetm\conditions\widgets;
 
 use kartik\depdrop\DepDrop;
-use micetm\conditions\models\constructor\attributes\AbstractAttribute;
+use micetm\conditionsBase\models\AttributeInterface;
 use yii\base\Widget;
 use yii\web\View;
 
@@ -25,7 +25,7 @@ class Comparison extends Widget
                 $this->availableComparisons[$this->model->attribute],
                 $this->availableComparisons[$this->model->attribute]
             )
-            : [AbstractAttribute::EQUAL_TO_COMPARISON => AbstractAttribute::EQUAL_TO_COMPARISON];
+            : [AttributeInterface::EQUAL_TO_COMPARISON => AttributeInterface::EQUAL_TO_COMPARISON];
         $input = DepDrop::widget([
             'hashVarLoadPosition' => View::POS_END,
             'name' => $this->path,
