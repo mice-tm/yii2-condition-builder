@@ -5,6 +5,7 @@ namespace micetm\conditions\services;
 use micetm\conditions\models\constructor\conditions\Condition;
 use yii\base\UnknownPropertyException;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Console;
 
 class OracleService implements OracleInterface
 {
@@ -75,6 +76,9 @@ class OracleService implements OracleInterface
      */
     public function conditionNOT($conditions, $target)
     {
+        if (count($conditions) > 1) {
+            return ! $this->conditionOR($conditions, $target);
+        }
         return ! $this->speak(current($conditions), $target);
     }
 }
