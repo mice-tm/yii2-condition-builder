@@ -27,6 +27,7 @@ class OracleServiceTest extends TestCase
      */
     public function testSpeakSuccess($condition, $expectedResult)
     {
+        
         $target = [
             'key1' => 'value1',
             'key2' => 'value2',
@@ -50,7 +51,21 @@ class OracleServiceTest extends TestCase
                     'key6' => 'value6',
                 ]
             ],
+            'state' => 1,
+            'propertyValues' =>
+                [
+                    'topic' => [
+                        'id' => '860308',
+                        'value' => 'Graphics',
+                    ],
+                    'types' => [
+                        'id' => '50132',
+                        'value' => 'PowerPoint Templates',
+                    ],
+                ],
+            
         ];
+        
         $this->assertEquals($expectedResult, $this->oracle->speak($condition, $target));
     }
 
@@ -127,75 +142,66 @@ class OracleServiceTest extends TestCase
             ],
             [
                 'condition' => new Condition([
-                    'operator' => Condition::OPERATOR_AND,
-                    'conditions' => [
-                        [
-                            'attribute' => 'key1',
-                            'comparison' => AbstractAttribute::EQUAL_TO_COMPARISON,
-                            'value' => 'value1'
-                        ],
-                        [
-                            'attribute' => 'embeddedKey1.1.key2',
-                            'comparison' => AbstractAttribute::EQUAL_TO_COMPARISON,
-                            'value' => 'value3'
-                        ],
-                    ]
-                ]),
-                false
-            ],
-            [
-                'condition' => new Condition([
                     'operator' => Condition::OPERATOR_OR,
                     'conditions' => [
                         [
                             'attribute' => 'key1',
                             'comparison' => AbstractAttribute::EQUAL_TO_COMPARISON,
-                            'value' => 'value1'
+                            'value' => 'value2'
                         ],
                         [
                             'attribute' => 'embeddedKey1.1.key3',
                             'comparison' => AbstractAttribute::EQUAL_TO_COMPARISON,
-                            'value' => 'value3'
-                        ],
-                    ]
-                ]),
-                true
-            ],
-            [
-                'condition' => new Condition([
-                    'operator' => Condition::OPERATOR_OR,
-                    'conditions' => [
-                        [
-                            'attribute' => 'key1',
-                            'comparison' => AbstractAttribute::EQUAL_TO_COMPARISON,
-                            'value' => 'value1'
-                        ],
-                        [
-                            'attribute' => 'embeddedKey1.1.key2',
-                            'comparison' => AbstractAttribute::EQUAL_TO_COMPARISON,
-                            'value' => 'value3'
-                        ],
-                    ]
-                ]),
-                true
-            ],
-            [
-                'condition' => new Condition([
-                    'operator' => Condition::OPERATOR_OR,
-                    'conditions' => [
-                        [
-                            'attribute' => 'key2',
-                            'comparison' => AbstractAttribute::EQUAL_TO_COMPARISON,
-                            'value' => 'value1'
-                        ],
-                        [
-                            'attribute' => 'embeddedKey1.1.key2',
-                            'comparison' => AbstractAttribute::EQUAL_TO_COMPARISON,
-                            'value' => 'value3'
+                            'value' => 'value4'
                         ],
                     ]
                 ]),
                 false
+            ],
+            [
+                'condition' => new Condition([
+                    'operator' => Condition::OPERATOR_AND,
+                    'conditions' => [
+                        [
+                            'attribute' => 'state',
+                            'comparison' => AbstractAttribute::EQUAL_TO_COMPARISON,
+                            'value' => '1'
+                        ],
+                        [
+                            'operator' => Condition::OPERATOR_NOT,
+                            'conditions' => [
+                                [
+                                    'attribute' => "propertyValues.wordpressgpl.id",
+                                    'comparison' => AbstractAttribute::MORE_THAN_ONE_IN_COMPARISON,
+                                    'value' => [
+                                        "208488"
+                                    ],
+                                ],
+                                [
+                                    'attribute' => "propertyValues.types.id",
+                                    'comparison' => AbstractAttribute::MORE_THAN_ONE_IN_COMPARISON,
+                                    'value' => [
+                                        "50132",
+                                        "67711",
+                                        "249307",
+                                        "644650",
+                                        "892363",
+                                        "997417"
+                                    ],
+                                ],
+                                [
+                                    'attribute' => "propertyValues.topic.id",
+                                    'comparison' => AbstractAttribute::MORE_THAN_ONE_IN_COMPARISON,
+                                    'value' => [
+                                        "860308"
+                                    ],
+                                ],
+                                
+                            ],
+                        ],
+                    ]
+                ]),
+                false //behavior like in elastic search
             ],
         ];
     }
