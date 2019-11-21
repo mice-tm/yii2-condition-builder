@@ -19,9 +19,9 @@ class MultipleAttribute extends AbstractAttribute implements AttributeInterface
     /** @var array */
     public $comparisons = self::availableComparisons;
 
-    const availableComparisons = [
-        'in',
-        '=',
+    const availableComparisons =  [
+        self::MORE_THAN_ONE_IN_COMPARISON => self::MORE_THAN_ONE_IN_COMPARISON,
+        self::EQUAL_TO_COMPARISON => self::EQUAL_TO_COMPARISON,
     ];
 
     public function getData(){

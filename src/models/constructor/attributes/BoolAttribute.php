@@ -8,7 +8,7 @@ class BoolAttribute extends AbstractAttribute implements AttributeInterface
 {
     public $comparisons = self::availableComparisons;
 
-    const availableComparisons = [
-        '=',
+    const availableComparisons =  [
+        self::EQUAL_TO_COMPARISON => self::EQUAL_TO_COMPARISON,
     ];
 }

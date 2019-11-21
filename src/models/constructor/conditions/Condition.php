@@ -30,11 +30,6 @@ class Condition extends Model implements ContainerInterface, ConditionInterface
 
     public $conditions = [];
 
-    const OPERATOR_AND = 'AND';
-    const OPERATOR_OR = 'OR';
-    const OPERATOR_NOT = 'NOT';
-    const OPERATOR_STATEMENT = null;
-
     public static $operators = [
         self::OPERATOR_AND => self::OPERATOR_AND,
         self::OPERATOR_OR => self::OPERATOR_OR,
@@ -78,7 +73,7 @@ class Condition extends Model implements ContainerInterface, ConditionInterface
         ] + parent::scenarios();
     }
 
-    public function isUnary()
+    public function isUnary():bool
     {
         return !empty($this->attribute) && !empty($this->comparison);
     }

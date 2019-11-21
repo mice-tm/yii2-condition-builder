@@ -8,12 +8,12 @@ class TimestampAttribute extends AbstractAttribute implements AttributeInterface
     /** @var array */
     public $comparisons = self::availableComparisons;
 
-    const availableComparisons = [
-        '=',
-        '>',
-        '>=',
-        '<',
-        '<='
+    const availableComparisons =  [
+        self::EQUAL_TO_COMPARISON => self::EQUAL_TO_COMPARISON,
+        self::GREATER_THAN_COMPARISON => self::GREATER_THAN_COMPARISON,
+        self::GREATER_THAN_OR_EQUAL_TO_COMPARISON => self::GREATER_THAN_OR_EQUAL_TO_COMPARISON,
+        self::LESS_THAN_COMPARISON => self::LESS_THAN_COMPARISON,
+        self::LESS_THAN_OR_EQUAL_TO_COMPARISON => self::LESS_THAN_OR_EQUAL_TO_COMPARISON,
     ];
 
     public function value($value)
