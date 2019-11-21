@@ -2,25 +2,17 @@
 
 class Counter {
 
+    /**
+     * @todo WTF?
+     */
     constructor(){
-        this.lists = [
-            [1,2,3,4,5,6,7,8,9,10],
-            ["a","b","c","d","e","f","g","h","i","j"],
-            ["i","ii","iii","iv","v", "vi", "vii", "viii", "ix", "x"],
-            [1,2,3,4,5,6,7,8,9,10],
-            ["a","b","c","d","e","f","g","h","i","j"],
-            [1,2,3,4,5,6,7,8,9,10],
-            ["a","b","c","d","e","f","g","h","i","j"],
-            ["i","ii","iii","iv","v", "vi", "vii", "viii", "ix", "x"],
-            [1,2,3,4,5,6,7,8,9,10],
-            ["a","b","c","d","e","f","g","h","i","j"]
-        ];
+        this.list = new ListBuilder();
     };
     init() {
         $('.counter').each(function (index, value) {
             const parentFieldSet = $(value).parents('.fieldset:first');
             $('span', value).html(
-                this.lists[parentFieldSet.attr('data-level')][parentFieldSet.attr('data-position')] + '.'
+                this.list.pointer(parentFieldSet.attr('data-level'), parentFieldSet.attr('data-position')) + '.'
             );
         }.bind(this));
     }
