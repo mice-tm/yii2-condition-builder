@@ -1,8 +1,9 @@
 <?php
 namespace micetm\conditions\widgets;
 
-use micetm\conditions\models\constructor\attributes\AbstractAttribute;
-use micetm\conditions\models\constructor\attributes\TimestampAttribute;
+use micetm\conditionsBase\models\AttributeInterface;
+
+use micetm\conditionsBase\models\constructor\attributes\TimestampAttribute;
 use trntv\yii\datetime\DateTimeWidget;
 use yii\base\Widget;
 use yii\bootstrap\Html;
@@ -17,7 +18,7 @@ class Value extends Widget
     public $position = 0;
     public $disabled = false;
     /**
-     * @var AbstractAttribute
+     * @var AttributeInterface
      */
     public $attribute = null;
     public $dataUrl;

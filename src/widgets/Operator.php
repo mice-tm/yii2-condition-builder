@@ -1,7 +1,7 @@
 <?php
 namespace micetm\conditions\widgets;
 
-use micetm\conditions\models\constructor\conditions\Condition;
+use micetm\conditionsBase\models\constructor\conditions\Condition;
 use yii\base\Widget;
 use yii\bootstrap\Html;
 

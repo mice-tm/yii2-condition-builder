@@ -28,12 +28,10 @@
     "yii2tech/embedded": "~1.0.3",
     "kartik-v/yii2-widgets": "~3.4.0",
     "trntv/yii2-datetime-widget": "~1.1.0",
-    "oomphinc/composer-installers-extender": "^1.1.2"
+    "oomphinc/composer-installers-extender": "^1.1.2",
+    "mice-tm/conditions-base": "^1.0.0"
   },
   "config": {
     "process-timeout": 1800
-  },
-  "require-dev": {
-    "codeception/codeception": "2.5.x-dev"
   }
 }

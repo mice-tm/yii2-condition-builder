@@ -2,9 +2,10 @@
 
 namespace micetm\conditions\actions\conditions;
 
-use micetm\conditions\models\constructor\attributes\AbstractAttribute;
-use micetm\conditions\models\constructor\conditions\Condition;
-use micetm\conditions\services\ConstructorService;
+use micetm\conditionsBase\services\ConstructorService;
+use micetm\conditionsBase\models\AttributeInterface;
+use micetm\conditionsBase\models\ConditionInterface;
+use micetm\conditionsBase\models\constructor\conditions\Condition;
 use yii\base\Action;
 use Yii;
 
@@ -16,7 +17,7 @@ class CreateAction extends Action
     public $constructor;
     public $defaultAttribute;
     public $defaultValue;
-    public $defaultComparison = AbstractAttribute::EQUAL_TO_COMPARISON;
+    public $defaultComparison = AttributeInterface::EQUAL_TO_COMPARISON;
     public $comparisonUrl;
     public $valueUrl;
 
@@ -48,7 +49,7 @@ class CreateAction extends Action
 
         return $this->controller->renderAjax('@constructor-views/condition/ajax/_condition', [
             'model' => new Condition([
-                'operator' => Condition::OPERATOR_STATEMENT,
+                'operator' => ConditionInterface::OPERATOR_STATEMENT,
                 'attribute' => $this->defaultAttribute,
                 'comparison' => $this->defaultComparison,
                 "value" => $this->defaultValue,

@@ -11,7 +11,8 @@ class ConstructorAsset extends AssetBundle
     public $sourcePath = __DIR__ . '/assets';
     public $js = [
         'js/constructor.js',
-        'js/Counter.js'
+        'js/ListBuilder.js',
+        'js/Counter.js',
     ];
     public $css = ['css/constructor.css'];
     public $depends = [
