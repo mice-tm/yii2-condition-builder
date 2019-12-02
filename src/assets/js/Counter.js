@@ -2,9 +2,6 @@
 
 class Counter {
 
-    /**
-     * @todo WTF?
-     */
     constructor(){
         this.list = new ListBuilder();
     };
@@ -12,7 +9,10 @@ class Counter {
         $('.counter').each(function (index, value) {
             const parentFieldSet = $(value).parents('.fieldset:first');
             $('span', value).html(
-                this.list.pointer(parentFieldSet.attr('data-level'), parentFieldSet.attr('data-position')) + '.'
+                this.list.pointer(
+                  parentFieldSet.attr('data-level'),
+                  parentFieldSet.attr('data-position')
+                ) + '.'
             );
         }.bind(this));
     }

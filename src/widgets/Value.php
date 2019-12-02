@@ -2,7 +2,8 @@
 namespace micetm\conditions\widgets;
 
 use micetm\conditionsBase\models\AttributeInterface;
-use micetm\conditions\models\constructor\attributes\TimestampAttribute;
+
+use micetm\conditionsBase\models\constructor\attributes\TimestampAttribute;
 use trntv\yii\datetime\DateTimeWidget;
 use yii\base\Widget;
 use yii\bootstrap\Html;

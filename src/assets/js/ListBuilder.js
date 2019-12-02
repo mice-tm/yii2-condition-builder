@@ -50,7 +50,6 @@ class ListBuilder {
                 number = number % romanNumList[key];
             }
         }
-
         return roman;
     }
 }

@@ -3,7 +3,7 @@
 namespace micetm\conditions\actions\conditions;
 
 use kartik\depdrop\DepDropAction;
-use micetm\conditions\services\ConstructorService;
+use micetm\conditionsBase\services\ConstructorService;
 
 class ViewValuesAction extends DepDropAction
 {

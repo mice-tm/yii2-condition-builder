@@ -2,10 +2,10 @@
 
 namespace micetm\conditions\actions\conditions;
 
-use micetm\conditions\models\constructor\conditions\Condition;
-use micetm\conditions\services\ConstructorService;
+use micetm\conditionsBase\services\ConstructorService;
 use micetm\conditionsBase\models\AttributeInterface;
 use micetm\conditionsBase\models\ConditionInterface;
+use micetm\conditionsBase\models\constructor\conditions\Condition;
 use yii\base\Action;
 use Yii;
 
