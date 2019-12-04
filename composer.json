@@ -29,7 +29,7 @@
     "kartik-v/yii2-widgets": "~3.4.0",
     "trntv/yii2-datetime-widget": "~1.1.0",
     "oomphinc/composer-installers-extender": "^1.1.2",
-    "mice-tm/conditions-base": "^1.0.1"
+    "mice-tm/conditions-base": "^1.0.2"
   },
   "config": {
     "process-timeout": 1800
