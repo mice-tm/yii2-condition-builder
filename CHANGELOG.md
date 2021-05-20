@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [3.0.2] - 2021-05-20
+### Added
+- Added `CreateAction` parameter `constructorView`
+
 ## [3.0.0] - 2019-12-01
 ### Changed
 - Query builder separated in its own library
